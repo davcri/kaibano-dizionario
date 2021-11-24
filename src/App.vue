@@ -1,16 +1,18 @@
-<script setup></script>
+<script setup>
+import Footer from "./components/Footer.vue";
+import Navigation from "./components/Navigation.vue";
+</script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <div id="nav">
-        <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
-      </div>
-    </div>
-  </header>
-
+  <h1>
+    DIZIONARIO KAIBANO -
+    <span style="color: rgba(255, 0, 0, 0.75)">ITA</span>
+    <span style="color: rgba(255, 255, 255, 0.75)">LIA</span>
+    <span style="color: rgba(0, 128, 0, 0.75)">NO</span>
+  </h1>
+  <Navigation style="margin-bottom: 2em" />
   <router-view />
+  <Footer />
 </template>
 
 <style>
@@ -19,12 +21,25 @@
 html,
 body {
   height: 100%;
+  background-color: black;
   background: linear-gradient(
-    45deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(18, 0, 60, 1) 23%,
-    rgba(42, 6, 95, 1) 100%
+    0deg,
+    rgba(42, 0, 95, 1) 0%,
+    rgba(42, 6, 95, 0.95) 50%,
+    rgba(42, 0, 95, 1) 100%
   );
+}
+
+a {
+  color: var(--violet);
+}
+
+a:visited {
+  color: var(--link-muted);
+}
+
+a:hover {
+  color: var(--violet-highlight);
 }
 
 #app {
@@ -34,13 +49,22 @@ body {
   font-weight: normal;
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
 .logo {
   display: block;
   margin: 0 auto 2rem;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+h1 span {
+  font-weight: 900;
+}
+</style>
+
+<style scoped>
+h1 {
+  margin-top: 0.2em;
 }
 </style>

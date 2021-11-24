@@ -1,13 +1,42 @@
-<script setup lang="ts"></script>
+<script setup>
+import TermSearch from "../components/TermSearch.vue";
+import Dictionary from "../components/Dictionary.vue";
+</script>
+
+<script>
+export default {
+  mounted() {},
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
+  methods: {
+    onSearchQueryChanged(newQuery) {
+      this.searchQuery = newQuery;
+    },
+  },
+};
+</script>
 
 <template>
   <main>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="../assets/logo400x400.jpg"
-      width="125"
-      height="125"
-    />
+    <div class="container">
+      <TermSearch />
+      <Dictionary />
+    </div>
   </main>
 </template>
+
+<style scoped>
+div.container {
+  border-width: 0.15em;
+  border-color: var(--violet);
+  border-radius: 0.5em;
+  padding: 1em;
+  border-style: solid;
+  background-color: rgba(white, 0.2);
+
+  margin-bottom: 1em;
+}
+</style>

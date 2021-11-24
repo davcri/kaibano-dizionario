@@ -1,6 +1,6 @@
 {
-  "name": "vue-project",
-  "version": "0.0.0",
+  "name": "kaiba-dizionario",
+  "version": "v1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -8,6 +8,8 @@
     "serve": "vite preview --port 5050"
   },
   "dependencies": {
+    "papaparse": "^5.3.1",
+    "pinia": "^2.0.4",
     "vue": "^3.2.14",
     "vue-router": "^4.0.11"
   },
