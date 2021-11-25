@@ -9,8 +9,13 @@ export const dictionaryStore = defineStore("dictionary", {
   }),
   actions: {
     init() {
-      const data = this.parseDizionario();
-      this.words = [...data.data];
+      let data = this.parseDizionario();
+      data = data.data;
+      data.map((el) => {
+        delete el["Revisionato da"];
+        this.words.push(el);
+      });
+      // this.words = [...data.data];
     },
     reset() {
       this.searchQuery = "";

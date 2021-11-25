@@ -4,7 +4,7 @@
     <li>Il dizionario contiene {{ dictionary.words.length }} parole</li>
     <li>Sei su questo sito da {{ app.elapsedSeconds }} secondi</li>
     <li>
-      Su questo browser hai totalizzato un tempo totale di
+      Visualizzando {{ url }} hai totalizzato un tempo totale di
       {{ app.totalTime }} secondi
     </li>
   </ul>
@@ -31,6 +31,7 @@ export default {
       elapsedSecondsSinceLastUpdate: 0,
       appVersion: APP_VERSION,
       app: appStore(),
+      url: window.location.host,
     };
   },
   setup() {

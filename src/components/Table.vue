@@ -11,8 +11,8 @@
 
       <tbody>
         <tr
-          v-for="(word, i) in words"
-          :class="{ 'row-alternate': i % 2 === 0 }"
+          v-for="(word, j) in words"
+          :class="{ 'row-alternate': j % 2 === 0 }"
         >
           <td v-for="field in Object.values(word)" @click="pronounce(field)">
             {{ field }}
