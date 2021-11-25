@@ -3,6 +3,8 @@
     <router-link to="/">Dizionario</router-link>
     <span style="border: 1px solid; opacity: 0.2; font-size: 0.7em"></span>
     <router-link to="/about">Info</router-link>
+    <span style="border: 1px solid; opacity: 0.2; font-size: 0.7em"></span>
+    <router-link to="/stats">Stats</router-link>
   </div>
 </template>
 

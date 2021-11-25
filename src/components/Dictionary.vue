@@ -1,6 +1,5 @@
 <template>
   <div class="words">
-    Il dizionario contiene attualmente {{ wordsCount }} parole.
     <Table
       :headers="['Kaibano', '	🇮🇹 Italiano', 'Aggiunto da']"
       :words="filteredWords"
@@ -17,17 +16,15 @@ export default {
   setup() {
     return {
       dictionary: dictionaryStore(),
-      wordsCount: 0,
     };
   },
   mounted() {
-    const data = this.dictionary.parseDizionario();
-    this.words = [...data.data];
-    this.wordsCount = this.words.length;
+    // const data = this.dictionary.parseDizionario();
+    // this.words = [...this.dictionary.words];
   },
   computed: {
     filteredWords() {
-      return this.words.filter((w) => {
+      return this.dictionary.words.filter((w) => {
         const italianWord = w.Italiano.toLowerCase();
         const kaibanoWord = w.Kaibano.toLowerCase();
         const query = this.dictionary.$state.searchQuery.toLowerCase();

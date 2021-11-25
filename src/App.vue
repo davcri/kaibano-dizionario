@@ -1,6 +1,13 @@
 <script setup>
 import Footer from "./components/Footer.vue";
 import Navigation from "./components/Navigation.vue";
+import { dictionaryStore } from "./stores/dictionary";
+import { appStore } from "./stores/app";
+
+const dict = dictionaryStore();
+dict.init();
+const app = appStore();
+app.init();
 </script>
 
 <template>

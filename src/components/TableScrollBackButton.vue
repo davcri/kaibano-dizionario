@@ -1,6 +1,6 @@
 <template>
   <button id="scrollback" @click="scrollToTop" ref="btn" :class="{ hidden }">
-    Torna sù
+    Torna su
   </button>
 </template>
 

@@ -5,8 +5,13 @@ import Papa from "papaparse";
 export const dictionaryStore = defineStore("dictionary", {
   state: () => ({
     searchQuery: "",
+    words: [],
   }),
   actions: {
+    init() {
+      const data = this.parseDizionario();
+      this.words = [...data.data];
+    },
     reset() {
       this.searchQuery = "";
     },
