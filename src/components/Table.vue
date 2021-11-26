@@ -14,7 +14,11 @@
           v-for="(word, j) in words"
           :class="{ 'row-alternate': j % 2 === 0 }"
         >
-          <td v-for="field in Object.values(word)" @click="pronounce(field)">
+          <td
+            v-for="(field, k) of word"
+            @click="pronounce(field)"
+            :class="{ contributor: k === 'Aggiunto da' }"
+          >
             {{ field }}
           </td>
         </tr>
@@ -59,6 +63,7 @@ thead tr th {
   padding: 0.8em;
   z-index: 1;
   text-align: left;
+  font-weight: bold;
 
   position: sticky;
   top: 0;
@@ -80,6 +85,9 @@ tr.row-alternate {
 td {
   padding: 0.3em;
   padding-left: 1em;
+}
+.contributor {
+  color: var(--link-muted);
 }
 
 tbody td:hover {

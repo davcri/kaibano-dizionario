@@ -52,8 +52,14 @@ a:hover {
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.8rem;
   font-weight: normal;
+}
+
+@media screen and (min-width: 480px) {
+  #app {
+    padding: 2rem;
+  }
 }
 
 .logo {

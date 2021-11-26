@@ -63,13 +63,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .hl {
   background-color: var(--violet-highlight);
   color: var(--white);
   font-weight: bold;
   border-radius: 0.3em;
   padding: 0.1em;
+}
+
+li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .hl:hover {

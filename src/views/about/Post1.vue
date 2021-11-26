@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <h3>25 Novembre 2021 - Kaibazionario v1.0.0</h3>
+    <h3>25 Novembre 2021 - Dizionario Kaibano v1.0.0</h3>
     <p class="written-by">
       Scritto da: <span class="author">Crystal Bit</span>
     </p>
@@ -46,7 +46,7 @@ div.post {
   margin-left: 0.2em;
 
   padding-right: 2em;
-  border-left: solid var(--link-muted) 4px;
+  border-left: solid var(--violet-highlight-semitransparent) 2px;
   margin-bottom: 1.5em;
 }
 </style>
