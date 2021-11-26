@@ -12,7 +12,7 @@
       <em>
         Il counter verrà sbloccato quando ci saranno almeno 3 contributor.
         <br />
-        Vedi la sezione <a href="/#/about">info</a> per scoprire come
+        Vedi la sezione <a href="/#/info">info</a> per scoprire come
         contribuire.
       </em>
     </li>
