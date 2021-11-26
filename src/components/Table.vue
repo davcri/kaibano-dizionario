@@ -42,12 +42,16 @@ export default {
 <style scoped>
 div.wrapper {
   width: 100%;
+  overflow-x: scroll;
 }
 
 table {
   border-spacing: 0px;
   width: 100%;
   position: relative;
+  border-radius: 0.5em;
+  border-collapse: collapse;
+  overflow: hidden;
 }
 
 thead tr th {
