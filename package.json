@@ -8,6 +8,9 @@
     "serve": "vite preview --port 5050"
   },
   "dependencies": {
+    "better-scroll": "^2.4.2",
+    "eventemitter3": "^4.0.7",
+    "gsap": "^3.8.0",
     "howler": "^2.2.3",
     "papaparse": "^5.3.1",
     "pinia": "^2.0.4",

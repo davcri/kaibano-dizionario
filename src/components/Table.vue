@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <table>
-      <thead>
+      <thead ref="head">
         <tr>
           <th v-for="el in headers">
             {{ el }}
@@ -9,7 +9,15 @@
         </tr>
       </thead>
 
-      <tbody>
+      <thead ref="headSticky" class="sticky" v-show="sticky">
+        <tr>
+          <th v-for="el in headers">
+            {{ el }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody ref="tbody">
         <tr
           v-for="(word, j) in words"
           :class="{ 'row-alternate': j % 2 === 0 }"
@@ -29,10 +37,51 @@
 </template>
 
 <script>
+import { Events } from "../App.vue";
 import TableScrollBackButton from "./TableScrollBackButton.vue";
+
 export default {
   props: ["headers", "words"],
+  data() {
+    return {
+      sticky: false,
+    };
+  },
+  mounted() {
+    Events.on("scrolled", this.onScroll);
+    this.checkSticky();
+  },
+  unmounted() {
+    Events.off("scrolled");
+    this.killed = true;
+  },
   methods: {
+    checkSticky() {
+      /**
+       * @type{HTMLElement}
+       */
+      const head = this.$refs.head;
+      const headSticky = this.$refs.headSticky;
+      const tBody = this.$refs.tbody;
+      const headRect = head.getBoundingClientRect();
+      if (headRect.y < 0) {
+        this.sticky = true;
+        head.style.height = "0px";
+        headSticky.style.top = `${Math.abs(Math.ceil(headRect.y))}px`;
+        headSticky.style.transform = `translateY(${-headRect.height}px)`;
+        tBody.style.transform = `translateY(${-headRect.height}px)`;
+      }
+
+      if (headRect.y >= 0) {
+        this.sticky = false;
+        headSticky.style.top = ``;
+        headSticky.style.transform = ``;
+        tBody.style.transform = ``;
+      }
+    },
+    onScroll() {
+      this.checkSticky();
+    },
     pronounce(text) {
       const msg = new SpeechSynthesisUtterance(text);
       msg.lang = "it";
@@ -46,7 +95,7 @@ export default {
 <style scoped>
 div.wrapper {
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 table {
@@ -68,6 +117,11 @@ thead tr th {
   position: sticky;
   top: 0;
   position: -webkit-sticky;
+}
+thead.sticky {
+  position: relative;
+  width: 100%;
+  z-index: 1;
 }
 
 tbody {

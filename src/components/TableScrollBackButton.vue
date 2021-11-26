@@ -5,14 +5,15 @@
 </template>
 
 <script>
-import { appStore } from "../stores/app";
+import { Events } from "../App.vue";
 
 export default {
   mounted() {
     this.scrollFunction();
-    window.onscroll = () => {
-      this.scrollFunction();
-    };
+    Events.on("scrolled", this.scrollFunction);
+  },
+  unmounted() {
+    Events.off("scrolled");
   },
   data() {
     return {
@@ -22,18 +23,14 @@ export default {
   },
   methods: {
     scrollFunction() {
+      const scrollTop =
+        document.body.scrollTop || document.documentElement.scrollTop;
       if (this.animating) {
-        if (
-          document.body.scrolltoTop <= 50 ||
-          document.documentElement.scrollTop <= 50
-        )
+        if (scrollTop <= 50) {
           this.animating = false;
-        return;
-      }
-      if (
-        document.body.scrollTop > 250 ||
-        document.documentElement.scrollTop > 250
-      ) {
+          return;
+        }
+      } else if (scrollTop > 50) {
         this.hidden = false;
       } else {
         this.hidden = true;
@@ -42,11 +39,7 @@ export default {
     scrollToTop() {
       this.animating = true;
       this.hidden = true;
-      const app = appStore();
-      app.$state.minimize.play();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      // document.body.scrollTop = 0;
-      // document.documentElement.scrollTop = 0;
+      Events.emit("scrollToTopBtnClicked");
     },
   },
 };

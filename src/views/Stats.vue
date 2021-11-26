@@ -47,7 +47,7 @@
   </ul>
   <h2>INFO TECNICHE</h2>
   <ul>
-    <li><b>Versione webapp</b>: v{{ appVersion }}</li>
+    <li><b>Versione webapp</b>: {{ appVersion }}</li>
     <li>
       L'ultimo aggiornamento dell'applicazione web è stato fatto il
       {{ dictionaryLastUpdate }}
