@@ -1,11 +1,21 @@
 <template>
   <h2>Statistiche</h2>
   <ul>
-    <li>Il dizionario contiene {{ dictionary.words.length }} parole</li>
-    <li>Sei su questo sito da {{ app.elapsedSeconds }} secondi</li>
     <li>
-      Visualizzando {{ url }} hai totalizzato un tempo totale di
-      {{ app.totalTime }} secondi
+      Il dizionario contiene
+      <span class="hl"> {{ dictionary.words.length }} parole </span>
+    </li>
+    <li>
+      Hai aperto questa tab da
+      <span class="hl"> {{ app.elapsedSeconds }} secondi </span>
+    </li>
+    <li v-if="app.elapsedSeconds !== app.totalTime">
+      Da questo browser hai visualizzato {{ url }} da
+      <span class="hl">{{ app.totalTime }} secondi </span>
+    </li>
+    <li v-else>
+      Sembra che sia la prima volta che visiti questo sito da questo browser!
+      Aggiorna la pagina per sbloccare una nuova statistica!
     </li>
   </ul>
   <h2>INFO TECNICHE</h2>
@@ -52,3 +62,17 @@ export default {
   },
 };
 </script>
+
+<style>
+.hl {
+  background-color: var(--violet-highlight);
+  color: var(--white);
+  font-weight: bold;
+  border-radius: 0.3em;
+  padding: 0.1em;
+}
+
+.hl:hover {
+  /* background-color: var(--violet-highlight); */
+}
+</style>
