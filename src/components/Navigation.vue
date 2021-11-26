@@ -1,25 +1,13 @@
 <template>
   <div id="nav">
-    <router-link to="/" @click="sound">Dizionario</router-link>
+    <router-link to="/">Dizionario</router-link>
     <span style="border: 1px solid; opacity: 0.2; font-size: 0.7em"></span>
-    <router-link to="/about" @click="sound">Info</router-link>
+    <router-link to="/about">Info</router-link>
     <span style="border: 1px solid; opacity: 0.2; font-size: 0.7em"></span>
-    <router-link to="/stats" @click="sound">Stats</router-link>
+    <router-link to="/stats">Stats</router-link>
   </div>
 </template>
 
-<script>
-import { appStore } from "../stores/app";
-
-export default {
-  methods: {
-    sound() {
-      const app = appStore();
-      app.sfx.play();
-    },
-  },
-};
-</script>
 <style scoped>
 #nav a {
   text-decoration: unset;

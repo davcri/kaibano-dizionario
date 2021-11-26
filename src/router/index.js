@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
+import { appStore } from "../stores/app";
 import Stats from "../views/Stats.vue";
 
 const router = createRouter({
@@ -22,6 +23,19 @@ const router = createRouter({
       component: Stats,
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const app = appStore();
+  app.$state.clickedInternalLinks += 1;
+  if (app.$state.clickedInternalLinks === 0) {
+    // initial load
+    next();
+  } else {
+    const app = appStore();
+    app.sfx.play();
+    next();
+  }
 });
 
 export default router;

@@ -1,17 +1,44 @@
 <template>
-  <h2>Statistiche</h2>
+  <h2>STATISTICHE</h2>
   <ul>
     <li>
       Il dizionario contiene
       <span class="hl"> {{ dictionary.words.length }} parole </span>
     </li>
     <li>
+      <!-- {{ dictionary.contributorsCount }} -->
+      <span class="hl">Poche</span>
+      persone hanno contribuito al dizionario. <br />
+      <em>
+        Il counter verrà sbloccato quando ci saranno almeno 3 contributor.
+        <br />
+        Vedi la sezione <a href="/#/about">info</a> per scoprire come
+        contribuire.
+      </em>
+    </li>
+  </ul>
+  <h2>Tue statistiche</h2>
+  <ul>
+    <li>
       Hai aperto questa tab da
-      <span class="hl"> {{ app.elapsedSeconds }} secondi </span>
+      <span class="hl">
+        {{ app.elapsedSeconds }}
+        second{{ app.elapsedSeconds === 1 ? "o" : "i" }}</span
+      >
+      e da quando lo hai fatto:
+      <ul>
+        <li>
+          Hai aperto un totale di {{ app.clickedInternalLinks }} pagin{{
+            app.clickedInternalLinks === 1 ? "a" : "e"
+          }}
+          di questo sito
+        </li>
+      </ul>
     </li>
     <li v-if="app.elapsedSeconds !== app.totalTime">
-      Da questo browser hai visualizzato {{ url }} da
-      <span class="hl">{{ app.totalTime }} secondi </span>
+      Hai visualizzato {{ url }} per un totale di
+      <span class="hl">{{ app.totalTime }} secondi</span>
+      <em> (usando questo browser)</em>
     </li>
     <li v-else>
       Sembra che sia la prima volta che visiti questo sito da questo browser!
@@ -25,7 +52,7 @@
       L'ultimo aggiornamento dell'applicazione web è stato fatto il
       {{ dictionaryLastUpdate }}
     </li>
-    <li><b>Librerie</b>: Vue3, Vite, Pinia, Papa-parse</li>
+    <li><b>Librerie open source</b>: Vue3, Vite, Pinia, Papa-parse</li>
     <li><b>Codice sorgente</b>: in arrivo</li>
   </ul>
 </template>
@@ -75,6 +102,10 @@ export default {
 li {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+}
+
+em {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .hl:hover {

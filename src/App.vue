@@ -17,7 +17,7 @@ app.init();
     <span style="color: rgba(255, 255, 255, 0.75)">LIA</span>
     <span style="color: rgba(0, 128, 0, 0.75)">NO</span>
   </h1>
-  <Navigation style="margin-bottom: 2em" />
+  <Navigation style="margin-bottom: 1.5em" />
   <router-view />
   <Footer />
 </template>
@@ -69,6 +69,10 @@ a:hover {
 
 h1 {
   font-weight: 900;
+  font-size: 2.2em;
+  line-height: 0.9em;
+  user-select: none;
+  margin-bottom: 0.5em;
 }
 
 h1 span {

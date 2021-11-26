@@ -6,6 +6,7 @@ export const dictionaryStore = defineStore("dictionary", {
   state: () => ({
     searchQuery: "",
     words: [],
+    contributorsCount: 1,
   }),
   actions: {
     init() {

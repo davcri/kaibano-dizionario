@@ -13,12 +13,7 @@
       />
     </svg>
 
-    <input
-      id="query"
-      type="text"
-      v-model="dictionary.$state.searchQuery"
-      placeholder="Cerca"
-    />
+    <input id="query" type="text" ref="input" @keyup="cb" placeholder="Cerca" />
 
     <svg
       class="clear-icon"
@@ -53,8 +48,12 @@ export default {
   },
   methods: {
     clearInputForm() {
+      if (this.dictionary.$state.searchQuery === "") return;
       this.dictionary.$state.searchQuery = "";
       this.app.$state.click.play();
+    },
+    cb() {
+      this.dictionary.$state.searchQuery = this.$refs.input.value;
     },
   },
   watch: {

@@ -9,6 +9,7 @@ export const appStore = defineStore("appStore", {
   state: () => ({
     elapsedSeconds: 0,
     totalTime: 0,
+    clickedInternalLinks: -1,
     sfx: new Howl({ src: sfx1 }),
     click: new Howl({ src: click }),
     minimize: new Howl({ src: minimize, rate: 1.2 }),
