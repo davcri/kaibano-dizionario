@@ -15,8 +15,8 @@
 
   <h2>IL DIZIONARIO È UFFICIALE?</h2>
   <p>
-    Non si tratta di un'opera ufficiale. Cerchiamo comunque di verificare che le
-    informazioni riportate siano corrette.
+    Il dizionario è curato dalla community e non è attualmente riconosciuto come
+    un'opera ufficiale.
   </p>
 
   <h2>Esistono copie cartacee?</h2>
@@ -62,3 +62,10 @@ export default {
   components: { Post1 },
 };
 </script>
+
+<style scoped>
+h2 {
+  line-height: 1.2em;
+  margin-bottom: 0.2em;
+}
+</style>

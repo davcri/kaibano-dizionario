@@ -50,6 +50,8 @@ export default {
     clearInputForm() {
       if (this.dictionary.$state.searchQuery === "") return;
       this.dictionary.$state.searchQuery = "";
+      this.$refs.input.value = "";
+
       this.app.$state.click.play();
     },
     cb() {

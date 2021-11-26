@@ -14,6 +14,10 @@ export const dictionaryStore = defineStore("dictionary", {
       data = data.data;
       data.map((el) => {
         delete el["Revisionato da"];
+        // el["Aggiunto da"] = `asdl riojriewj ovnjdflvkx cpofdpfd`.substr(
+        //   0,
+        //   Math.floor(20 * Math.random())
+        // );
         this.words.push(el);
       });
       // this.words = [...data.data];
