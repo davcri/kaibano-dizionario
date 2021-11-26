@@ -10,7 +10,8 @@
   <h2>Cos'è il Kaibano?</h2>
   <p>
     Una lingua inventata da Gianluca Loggia, più comunemente conosciuto come
-    <b>Ualone</b>.
+    <b>Ualone</b>. Potete seguire Ualone principalmente su
+    <a href="https://www.twitch.tv/ualone">twitch.tv/ualone</a>.
   </p>
 
   <h2>IL DIZIONARIO È UFFICIALE?</h2>
