@@ -1,9 +1,17 @@
 import { defineStore } from "pinia";
 
+import { Howl } from "howler";
+import sfx1 from "../assets/kenney-sounds/Audio/drop_001.ogg";
+import click from "../assets/kenney-sounds/Audio/glitch_004.ogg"; // TODO: use correct format
+import minimize from "../assets/kenney-sounds/Audio/drop_004.ogg";
+
 export const appStore = defineStore("appStore", {
   state: () => ({
     elapsedSeconds: 0,
     totalTime: 0,
+    sfx: new Howl({ src: sfx1 }),
+    click: new Howl({ src: click }),
+    minimize: new Howl({ src: minimize, rate: 1.2 }),
   }),
   actions: {
     init() {

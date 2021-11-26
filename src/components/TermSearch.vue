@@ -26,7 +26,7 @@
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      @click="dictionary.$state.searchQuery = ''"
+      @click="clearInputForm"
       :class="{ clickable: dictionary.$state.searchQuery }"
     >
       <path fill="none" d="M0 0h24v24H0z" />
@@ -39,16 +39,23 @@
 </template>
 
 <script>
+import { appStore } from "../stores/app";
 import { dictionaryStore } from "../stores/dictionary";
 
 export default {
   setup() {
-    return { dictionary: dictionaryStore() };
+    return { dictionary: dictionaryStore(), app: appStore() };
   },
   mounted() {
     if (this.$route.query.q) {
       this.dictionary.$state.searchQuery = this.$route.query.q;
     }
+  },
+  methods: {
+    clearInputForm() {
+      this.dictionary.$state.searchQuery = "";
+      this.app.$state.click.play();
+    },
   },
   watch: {
     $route(to, from) {

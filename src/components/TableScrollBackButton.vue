@@ -5,9 +5,10 @@
 </template>
 
 <script>
+import { appStore } from "../stores/app";
+
 export default {
   mounted() {
-    // When the user scrolls down 20px from the top of the document, show the button
     this.scrollFunction();
     window.onscroll = () => {
       this.scrollFunction();
@@ -16,10 +17,19 @@ export default {
   data() {
     return {
       hidden: true,
+      animating: false,
     };
   },
   methods: {
     scrollFunction() {
+      if (this.animating) {
+        if (
+          document.body.scrolltoTop <= 50 ||
+          document.documentElement.scrollTop <= 50
+        )
+          this.animating = false;
+        return;
+      }
       if (
         document.body.scrollTop > 250 ||
         document.documentElement.scrollTop > 250
@@ -30,8 +40,13 @@ export default {
       }
     },
     scrollToTop() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
+      this.animating = true;
+      this.hidden = true;
+      const app = appStore();
+      app.$state.minimize.play();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      // document.body.scrollTop = 0;
+      // document.documentElement.scrollTop = 0;
     },
   },
 };
@@ -51,6 +66,7 @@ button {
 
 button.hidden {
   transition: bottom 0.3s;
-  bottom: -4em;
+  transition-timing-function: ease-out;
+  bottom: -5em;
 }
 </style>

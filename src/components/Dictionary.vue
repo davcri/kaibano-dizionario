@@ -1,11 +1,8 @@
 <template>
-  <div class="words">
-    <Table
-      :headers="['Kaibano', '	🇮🇹 Italiano', 'Aggiunto da']"
-      :words="filteredWords"
-    />
-    <!-- {{ sheets.$state.name }} -->
-  </div>
+  <Table
+    :headers="['Kaibano', '	🇮🇹 Italiano', 'Aggiunto da']"
+    :words="filteredWords"
+  />
 </template>
 
 <script>
