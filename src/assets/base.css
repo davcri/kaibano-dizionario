@@ -1,0 +1,90 @@
+:root {
+  --violet: #fe19a7;
+  --violet-highlight: #ff49b9;
+  --violet-highlight-semitransparent: hsla(323, 100%, 64%, 50%);
+  --link-muted: #e288c0;
+  --dark: #2a1452;
+  --accent: hsl(186, 99%, 55%);
+  --accent-darkened: hsl(186, 99%, 45%);
+  --accent-semitransparent: hsla(186, 99%, 55%, 0.3);
+  --white: #fafafa;
+  --muted: hsla(0, 0%, 100%, 0.35);
+
+  --radius: 0.5em;
+
+  --main-fonts: "Nunito", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --color-background: var(--dark);
+  --color-heading: var(--accent);
+  --color-text: var(--white);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+body {
+  color: var(--color-text);
+  line-height: 1.5;
+  font-size: 1rem;
+  font-family: var(--main-fonts);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body b {
+  font-weight: 600;
+}
+
+button {
+  font-family: var(--main-fonts);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--dark);
+  border-radius: 1.4em;
+  font-weight: 800;
+  border: solid var(--accent) 0px;
+  color: var(--accent-darkened);
+  box-shadow: var(--accent-semitransparent) 0px 0px 3px 3px;
+}
+
+button:hover {
+  cursor: pointer;
+  color: var(--accent);
+  box-shadow: var(--accent-semitransparent) 0px 0px 2px 4px;
+}
+
+button:focus {
+  border: none;
+  outline: none;
+}
+
+::placeholder {
+  color: var(--muted);
+}
+
+h1,
+h2 {
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-top: 1em;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+p b {
+  font-weight: 800;
+}
