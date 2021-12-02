@@ -7,7 +7,7 @@
         <span class="hl"> {{ dictionary.words.length }} parole </span>
       </li>
       <li>
-        L'ultimo aggiornamento del dizionario è del
+        Il dizionario è stato sincronizzato il
         <span class="hl">{{ dictionaryVersion }}</span>
       </li>
       <li>

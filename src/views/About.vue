@@ -46,8 +46,7 @@
       <br />
       Si accettano volentieri anche bug report o idee per miglioramenti! <br />
       Il codice di questo sito è rilasciato con licenza open source e
-      consultabile su
-      <a :href="repository">qui</a>.
+      consultabile <a :href="repository">qui</a>.
     </p>
 
     <h2>Aggiornamenti</h2>
