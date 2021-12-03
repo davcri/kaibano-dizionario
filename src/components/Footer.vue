@@ -10,12 +10,12 @@ if (import.meta.env.MODE !== "development") {
   );
   console.info(
     `%cNon so perché tu stia leggendo qui, ma non c'è molto di interessante.
-  
-  Se vuoi sapere di più su questo sito web guarda su questo profilo 
+
+  Se vuoi sapere di più su questo sito web guarda su questo profilo
   GitHub dove ho rilasciato il codice sorgente: https://github.com/davcri/kaibano-dizionario
-  
+
   Se vuoi sapere di più su di me: https://davcri.github.io/about/
-  
+
 Grazie per aver visitato il sito, a presto!`,
     "font-family: sans-serif; font-size: 1.25em"
   );

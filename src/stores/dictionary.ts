@@ -6,7 +6,7 @@ export const dictionaryStore = defineStore("dictionary", {
   state: () => ({
     searchQuery: "",
     words: [],
-    contributorsCount: 1,
+    contributors: {},
   }),
   actions: {
     init() {
@@ -24,7 +24,22 @@ export const dictionaryStore = defineStore("dictionary", {
         // https://www.papaparse.com/docs#config
         header: true,
       });
+
+      dict.data.forEach((el) => {
+        const contributor = el["Aggiunto da"];
+        if (contributor in this.contributors) {
+          this.contributors[contributor] += 1;
+        } else {
+          this.contributors[contributor] = 1;
+        }
+      });
+
       return dict;
+    },
+  },
+  getters: {
+    contributorsCount: (state) => {
+      return Object.keys(state.contributors).length;
     },
   },
 });

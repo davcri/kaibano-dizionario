@@ -1,7 +1,7 @@
 :root {
   --violet: #fe19a7;
   --violet-highlight: #ff49b9;
-  --violet-highlight-semitransparent: hsla(323, 100%, 64%, 50%);
+  --violet-highlight-semitransparent: hsla(323, 100%, 64%, 55%);
   --link-muted: #e288c0;
   --dark: #2a1452;
   --accent: hsl(186, 99%, 55%);

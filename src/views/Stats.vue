@@ -11,17 +11,12 @@
         <span class="hl">{{ dictionaryVersion }}</span>
       </li>
       <li>
-        <!-- {{ dictionary.contributorsCount }} -->
-        <span class="hl">Poche</span>
-        persone hanno contribuito al dizionario. <br />
-        <em>
-          Il counter verrà sbloccato quando ci saranno almeno 3 contributor.
-          <br />
-          Vedi la sezione <a href="/#/info">info</a> per scoprire come
-          contribuire.
-        </em>
+        <span class="hl"> {{ dictionary.contributorsCount }} utenti</span>
+        hanno contribuito al dizionario. I top 5 sono:
       </li>
     </ul>
+    <Leaderboard />
+
     <h2>Tue statistiche</h2>
     <ul>
       <li>
@@ -71,6 +66,7 @@
 <script>
 import { dictionaryStore } from "../stores/dictionary";
 import { appStore } from "../stores/app";
+import Leaderboard from "./stats/Leaderboard.vue";
 
 export default {
   data() {
@@ -100,6 +96,7 @@ export default {
       this.elapsedSecondsSinceLastUpdate += 1;
     },
   },
+  components: { Leaderboard },
 };
 </script>
 
@@ -109,11 +106,11 @@ div.stats {
 }
 
 .hl {
-  background-color: var(--violet-highlight);
+  background-color: var(--violet-highlight-semitransparent);
   color: var(--white);
   font-weight: bold;
   border-radius: 0.3em;
-  padding: 0.1em;
+  padding: 0.15em;
 }
 
 li {
