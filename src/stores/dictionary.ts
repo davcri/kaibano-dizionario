@@ -33,7 +33,6 @@ export const dictionaryStore = defineStore("dictionary", {
           this.contributors[contributor] = 1;
         }
       });
-
       return dict;
     },
   },

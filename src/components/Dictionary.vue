@@ -8,25 +8,24 @@ import Table from "./Table.vue";
 
 export default {
   setup() {
+    const dictionary = dictionaryStore()
     return {
-      dictionary: dictionaryStore(),
+      dictionary,
     };
   },
-  mounted() {},
   computed: {
     filteredWords() {
-      return this.dictionary.words.filter((w) => {
+      return this.dictionary.words.map(el =>{ return {
+        Kaibano: el.Kaibano,
+        Italiano: el.Italiano,
+        AggiuntoDa: el["Aggiunto da"]
+      }}).filter((w) => {
         const italianWord = w.Italiano.toLowerCase();
         const kaibanoWord = w.Kaibano.toLowerCase();
         const query = this.dictionary.$state.searchQuery.toLowerCase();
         return italianWord.includes(query) || kaibanoWord.includes(query);
       });
     },
-  },
-  data() {
-    return {
-      words: [],
-    };
   },
   components: { Table },
 };

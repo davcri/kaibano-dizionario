@@ -10,7 +10,6 @@ import Dictionary from "../components/Dictionary.vue";
 
 <script>
 export default {
-  mounted() {},
   data() {
     return {
       searchQuery: "",
