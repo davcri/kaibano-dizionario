@@ -1,5 +1,9 @@
 <template>
-  <p class="muted" style="margin-top: 2em">Made by Crystal Bit (aka davcri)</p>
+  <div class="row footer flex f-wrap">
+    <span class="muted">Made by Crystal Bit (aka davcri)</span>
+    <span class="muted">
+      <a href="https://github.com/davcri/kaibano-dizionario">Source code</a></span>
+  </div>
 </template>
 
 <script setup>
@@ -23,17 +27,22 @@ Grazie per aver visitato il sito, a presto!`,
 }
 </script>
 
-<style>
+<style scoped>
 .muted {
   font-size: 0.8em;
   color: var(--muted);
 }
 
-p.muted a {
-  color: #9c7f91;
+.footer {
+  gap: 1.2em;
+  margin-top: 1.5em;
 }
 
-p.muted a:hover {
+.muted a {
+  color: var(--muted)
+}
+
+.muted a:hover {
   color: var(--link-muted);
 }
 </style>

@@ -19,14 +19,12 @@ app.init();
         <span style="color: rgba(255, 255, 255, 0.75)">LIA</span>
         <span style="color: rgba(0, 128, 0, 0.75)">NO</span>
       </h1>
-      <Navigation style="margin-bottom: 1.5em" />
+      <Navigation id="nav"/>
     </div>
     <div class="row" :class="{ content: $route.name === 'Home' }">
       <router-view />
     </div>
-    <div class="row footer">
-      <Footer />
-    </div>
+    <Footer />
   </div>
 </template>
 
@@ -51,7 +49,7 @@ body {
 .box {
   display: flex;
   flex-flow: column;
-  max-height: calc(100vh - 4rem);
+  height: 100%;
 }
 
 .box .row.header {
@@ -63,10 +61,6 @@ body {
   flex-flow: column;
   flex: 1 1 auto;
   overflow-y: auto;
-}
-
-.box .row.footer {
-  flex: 0 1 40px;
 }
 
 a {
@@ -83,25 +77,17 @@ a:hover {
 
 #app {
   max-width: 1280px;
+  height: 100vh;
   margin: 0 auto;
   padding: 0.8rem;
+  padding-top:1rem;
+  padding-bottom: 0.4rem;
   font-weight: normal;
-}
-
-@media screen and (min-width: 480px) {
-  #app {
-    padding: 2rem;
-  }
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
 }
 
 h1 {
   font-weight: 900;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   line-height: 1em;
   user-select: none;
   margin-bottom: 0.5rem;
@@ -109,6 +95,25 @@ h1 {
 
 h1 span {
   font-weight: 900;
+}
+
+@media screen and (min-width: 480px) {
+  #app {
+    padding: 2rem;
+  }
+
+  #nav {
+    margin-bottom: 1.5em;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
 }
 </style>
 

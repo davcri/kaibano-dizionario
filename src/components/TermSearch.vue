@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex">
     <svg
       class="search-icon"
       xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,6 @@ export default {
 <style scoped>
 div {
   margin-bottom: 1em;
-  display: flex;
   flex-direction: row;
   width: fit-content;
   max-width: 100%;
@@ -112,7 +111,7 @@ svg.clickable:hover {
 }
 
 input {
-  font-size: 1.2em;
+  font-size: 1.0em;
   flex: 1;
   padding: 0.5em;
   border: solid rgba(0, 0, 0, 0) 1px;
@@ -123,5 +122,11 @@ input {
 
 input:focus {
   outline: none;
+}
+
+@media screen and (min-width: 480px) {
+  input {
+    font-size: 1.2em;
+  }
 }
 </style>

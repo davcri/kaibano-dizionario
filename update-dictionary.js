@@ -8,7 +8,6 @@ const doc = new GoogleSpreadsheet(sheetID);
 function wrapWithQuotes(text) {
   if (!text) return "";
   if (text.includes(",")) {
-    console.log(text, "lo include");
     text = `"${text}"`;
   }
   return text;

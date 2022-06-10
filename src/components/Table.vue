@@ -15,14 +15,16 @@
       <tbody>
         <tr
           v-for="(word, j) in words"
+          :key="`${word.Kaibano} ${j}`"
           :class="{ 'row-alternate': j % 2 === 0 }"
         >
           <td
-            v-for="(field, k) of word"
-            @click="pronounce(field)"
-            :class="{ contributor: k === 'Aggiunto da' }"
+            v-for="(val, key, idx) of word"
+            :key="`${val} ${idx}`"
+            @click="pronounce(val)"
+            :class="{ contributor: key === 'AggiuntoDa' }"
           >
-            {{ field }}
+            {{ val }}
           </td>
         </tr>
       </tbody>
@@ -56,9 +58,17 @@ div.row.content {
   clip-path: inset(0 0 0 0 round 0.6em);
 }
 
-thead tr th {
+tbody {
+  overflow-x: scroll;
+}
+
+tbody tr {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+th {
   background-color: #3f1c6f;
-  padding: 0.8em;
+  padding: 0.4em;
   z-index: 2;
   text-align: left;
   font-weight: bold;
@@ -68,33 +78,26 @@ thead tr th {
   position: -webkit-sticky;
 }
 
-thead {
-}
-
-tbody {
-  overflow-x: scroll;
-}
-
-tbody tr {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
 tr.row-alternate {
   background-color: rgba(200, 0, 0, 0.1);
 }
 
 td {
-  padding: 0.3em;
+  padding: 0.2em;
   padding-left: 1em;
+
+    background-color: #5a329100;
+  transition: all 0.15s;
+  text-transform: capitalize;
 }
-.contributor {
-  color: var(--link-muted);
-  /* color: var(--violet-highlight-semitransparent); */
+
+td.contributor {
+  color: var(--muted-slightly);
   text-transform: none;
   font-size: 0.75rem;
 }
 
-tbody td:hover {
+td:hover {
   background-color: #4e2e7a;
   z-index: 1;
   cursor: pointer;
@@ -102,9 +105,19 @@ tbody td:hover {
   transform: translateX(-0.2rem);
 }
 
-tbody td {
-  background-color: #5a329100;
-  transition: all 0.15s;
-  text-transform: capitalize;
+@media screen and (min-width: 480px) {
+  th {
+    padding: 0.8em;
+  }
+
+  td {
+    padding: 0.3em;
+    padding-left: 1em;
+  }
+
+  td.contributor {
+    font-size: 0.85rem;
+  }
 }
+
 </style>

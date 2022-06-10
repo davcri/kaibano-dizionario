@@ -9,6 +9,7 @@
   --accent-semitransparent: hsla(186, 99%, 55%, 0.3);
   --white: #fafafa;
   --muted: hsla(0, 0%, 100%, 0.35);
+  --muted-slightly: hsla(0, 0%, 100%, 0.55);
 
   --radius: 0.5em;
 
@@ -87,4 +88,12 @@ h3 {
 
 p b {
   font-weight: 800;
+}
+
+.flex {
+  display: flex;
+}
+
+.f-wrap {
+  flex-wrap: wrap;
 }
