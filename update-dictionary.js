@@ -7,6 +7,7 @@ const doc = new GoogleSpreadsheet(sheetID);
 
 function wrapWithQuotes(text) {
   if (!text) return "";
+  text = text.replaceAll("\n", " "); // allow entries with multiple lines
   if (text.includes(",")) {
     text = `"${text}"`;
   }
