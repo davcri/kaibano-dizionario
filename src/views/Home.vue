@@ -1,26 +1,13 @@
 <script setup>
-import TermSearch from "../components/TermSearch.vue";
 import Dictionary from "../components/Dictionary.vue";
 </script>
 
 <template>
-  <TermSearch />
   <Dictionary />
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      searchQuery: "",
-    };
-  },
-  methods: {
-    onSearchQueryChanged(newQuery) {
-      this.searchQuery = newQuery;
-    },
-  },
-};
+export default {};
 </script>
 
 <style scoped></style>

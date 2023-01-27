@@ -1,6 +1,11 @@
+<script setup>
+import TermSearch from "./TermSearch.vue";
+</script>
+
 <template>
   <div id="nav" class="flex f-wrap">
-    <router-link to="/">Dizionario</router-link>
+    <TermSearch />
+    <router-link to="/" style="margin-left: 16px">Dizionario</router-link>
     <router-link to="/info">Info</router-link>
     <router-link to="/stats">Stats</router-link>
     <a
@@ -12,9 +17,12 @@
 </template>
 
 <style scoped>
+#nav {
+  align-items: center;
+}
 
 #nav * {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 #nav a {

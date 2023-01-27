@@ -4,8 +4,8 @@
       class="search-icon"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      width="22"
-      height="22"
+      width="18"
+      height="18"
     >
       <path color="white" fill="none" d="M0 0h24v24H0z" />
       <path
@@ -19,8 +19,8 @@
       class="clear-icon"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      width="24"
-      height="24"
+      width="18"
+      height="18"
       @click="clearInputForm"
       :class="{ clickable: dictionary.$state.searchQuery }"
     >
@@ -95,9 +95,11 @@ svg {
   margin: auto;
   min-width: 24px;
 }
+
 svg.search-icon {
   margin-left: 0.6em;
 }
+
 svg.clear-icon {
   position: absolute;
   right: 0px;
@@ -105,15 +107,17 @@ svg.clear-icon {
   vertical-align: middle;
   height: 100%;
 }
+
 svg.clickable:hover {
   cursor: pointer;
   fill: var(--white);
 }
 
 input {
-  font-size: 1.0em;
+  font-size: 1em;
   flex: 1;
-  padding: 0.5em;
+  padding: 0.2em;
+  padding-right: 3.5ch;
   border: solid rgba(0, 0, 0, 0) 1px;
   background-color: rgba(0, 0, 0, 0);
   color: var(--white);
@@ -126,7 +130,7 @@ input:focus {
 
 @media screen and (min-width: 480px) {
   input {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 }
 </style>
