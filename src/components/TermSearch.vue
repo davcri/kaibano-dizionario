@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex" :style="$data.enabled ? 'display: block' : 'display: none'">
     <svg
       class="search-icon"
       xmlns="http://www.w3.org/2000/svg"
@@ -41,12 +41,18 @@ export default {
   setup() {
     return { dictionary: dictionaryStore(), app: appStore() };
   },
+  data() {
+    return {
+      enabled: true,
+    };
+  },
   mounted() {
     const { q } = this.$route.query;
     if (q) {
       this.dictionary.$state.searchQuery = q;
       this.$refs.input.value = q;
     }
+    this.$data.enabled = this.$route.path === "/";
   },
   methods: {
     clearInputForm() {
@@ -65,6 +71,7 @@ export default {
       if (to.query.q) {
         this.dictionary.$state.searchQuery = to.query.q;
       }
+      this.$data.enabled = to.path === "/";
     },
   },
 };
