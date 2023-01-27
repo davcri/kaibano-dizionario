@@ -10,17 +10,26 @@ Simple website made for the preservation of Kaibano language.
 
 This app was made using Vue3/Vite.
 
-**Suggested IDE:** [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur).
+**Suggested IDE:** [VSCode](https://code.visualstudio.com/) +
+[Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+(and disable Vetur).
 
 ### Update dictionary
-
-Make sure to have `.config/kaibano-dizionario-efe71b037dc3.json`. If you don't have it, then you are not allowed to update kaibano.it
-
-If you have the config file (and its full content), then just run:
 
 ```sh
 npm run update-dictionary
 ```
+
+In order to run this command, you need a correct `.env` file with these keys
+defined:
+
+```conf
+GOOGLE_SERVICE_ACCOUNT_EMAIL="email@google.example"
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\ ... \n-----END PRIVATE KEY-----\n"
+```
+
+Read "google-spreadsheet" doc for more info:
+https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication?id=service-account
 
 ### Customize configuration
 
