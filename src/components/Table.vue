@@ -1,12 +1,19 @@
+<script setup>
+import TermSearch from "./TermSearch.vue";
+</script>
+
 <template>
+  <TermSearch />
+
   <div class="row content">
     <table>
       <thead>
         <tr>
-          <th>
+          <th class="flex">
             <IconSort :asc="true" style="width: 15px" />
             Kaibano
           </th>
+          
           <th>Italiano</th>
           <th>Aggiunto da</th>
         </tr>
@@ -36,6 +43,7 @@
 <script>
 import TableScrollBackButton from "./TableScrollBackButton.vue";
 import IconSort from "./icons/IconSort.vue";
+
 export default {
   props: ["words"],
   methods: {

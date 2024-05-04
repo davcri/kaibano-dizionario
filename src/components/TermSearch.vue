@@ -105,6 +105,8 @@ svg {
 
 svg.search-icon {
   margin-left: 0.6em;
+  position: relative;
+  top: 2px;
 }
 
 svg.clear-icon {
