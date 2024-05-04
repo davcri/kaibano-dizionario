@@ -32,26 +32,3 @@
     </p>
   </div>
 </template>
-
-<style scoped>
-p.written-by {
-  font-size: 0.8em;
-  color: hsla(0, 0%, 83%, 0.9);
-  font-weight: 100;
-}
-
-div.post {
-  border-left: solid var(--violet-highlight-semitransparent) 0.1rem;
-  padding-left: 1.25rem;
-  margin-left: 0.1rem;
-  padding-right: 1rem;
-}
-
-@media screen and (min-width: 480px) {
-  div.post {
-    padding-left: 1.5rem;
-    margin-left: 0.1rem;
-    padding-right: 1.5rem;
-  }
-}
-</style>
