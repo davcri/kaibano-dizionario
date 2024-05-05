@@ -10,12 +10,12 @@ import TermSearch from "./TermSearch.vue";
       <thead>
         <tr>
           <th>
-            <IconSort :asc="true" style="width: 15px" />
+            <!-- <IconSort :asc="true" style="width: 15px" /> -->
             Kaibano
           </th>
           
           <th>Italiano</th>
-          <th>Aggiunto da</th>
+          <th class="md-hide">Aggiunto da</th>
         </tr>
       </thead>
 
@@ -29,7 +29,7 @@ import TermSearch from "./TermSearch.vue";
             v-for="(val, key, idx) of word"
             :key="`${val} ${idx}`"
             @click="pronounce(val)"
-            :class="{ contributor: key === 'AggiuntoDa' }"
+            :class="{ contributor: key === 'AggiuntoDa', 'md-hide': idx ==2 }"
           >
             {{ val }}
           </td>
@@ -74,16 +74,26 @@ tbody tr {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-th {
-  background-color: #3f1c6f;
-  padding: 0.4em;
-  z-index: 2;
-  text-align: left;
-  font-weight: bold;
+tbody tr :nth-child(1) {
+  width: calc(75% / 2);
+}
+tbody tr :nth-child(2) {
+ width: calc(75% / 2);
+}
+tbody tr :nth-child(3) {
+ width: 25%;
+}
 
+th {
   top: 0px;
   position: sticky;
   position: -webkit-sticky;
+  padding: 0.4em;
+  z-index: 2;
+
+  background-color: #3f1c6f;
+  text-align: left;
+  font-weight: bold;
 }
 
 tr.row-alternate {
@@ -94,7 +104,7 @@ td {
   padding: 0.2em;
   padding-left: 1em;
 
-    background-color: #5a329100;
+  background-color: #5a329100;
   transition: all 0.15s;
   text-transform: capitalize;
 }
@@ -125,6 +135,15 @@ td:hover {
 
   td.contributor {
     font-size: 0.85rem;
+  }
+}
+
+.md-hide{
+  display: none;
+}
+@media only screen and (min-width: 600px) {
+  .md-hide{
+    display: revert;
   }
 }
 

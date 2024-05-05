@@ -13,8 +13,8 @@ export default defineConfig({
   },
   define: {
     BUILD_TIMESTAMP: new Date(),
-    APP_VERSION: JSON.stringify(process.env.npm_package_version),
+    APP_VERSION: JSON.stringify(config.version),
     DICTIONARY_VERSION: JSON.stringify(config.dictionaryVersion),
-    REPOSITORY: JSON.stringify(process.env.npm_package_homepage),
+    REPOSITORY: JSON.stringify(config.homepage),
   },
 });

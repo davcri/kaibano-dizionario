@@ -90,10 +90,10 @@ p b {
   font-weight: 800;
 }
 
+/* UTILS */
 .flex {
   display: flex;
 }
-
 .f-wrap {
   flex-wrap: wrap;
 }
