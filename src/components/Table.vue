@@ -15,7 +15,7 @@ import TermSearch from "./TermSearch.vue";
           </th>
           
           <th>Italiano</th>
-          <th class="md-hide">Aggiunto da</th>
+          <th class="md-hide" style="width: 25%">Aggiunto da</th>
         </tr>
       </thead>
 
@@ -59,42 +59,67 @@ export default {
 
 <style scoped>
 table {
+  width: 100%;
+  overflow-x: hidden;
+  display: grid;
   border-spacing: 0px;
+
+  word-break: break-word;
 }
 
 div.row.content {
   clip-path: inset(0 0 0 0 round 0.6em);
 }
 
-tbody {
-  overflow-x: scroll;
-}
-
 tbody tr {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-tbody tr :nth-child(1) {
-  width: calc(75% / 2);
-}
-tbody tr :nth-child(2) {
- width: calc(75% / 2);
-}
-tbody tr :nth-child(3) {
- width: 25%;
+tbody tr, tbody tr td {
+  width: 50%;
 }
 
-th {
+@media screen and (min-width: 480px) {
+  tbody tr :nth-child(1) {
+    width: calc(75% / 2);
+  }
+  tbody tr :nth-child(2) {
+    width: calc(75% / 2);
+  }
+  tbody tr :nth-child(3) {
+   width: 25%;
+  }
+}
+
+thead {
+  display: flex;
+  width: 100%;
   top: 0px;
+  display: inline-table;
   position: sticky;
   position: -webkit-sticky;
-  padding: 0.4em;
-  z-index: 2;
-
   background-color: #3f1c6f;
+  z-index: 2;
+}
+
+/* th */
+th {
+  padding: 0.5em;
+  width: 50%;
+  padding-left: 0.8em;
+  flex: 1;
   text-align: left;
   font-weight: bold;
 }
+th:nth-child(2) {
+  background-color: rgba(0,0,0,0.05);
+}
+@media screen and (min-width: 480px) {
+  th {
+    width: calc(75%/2);
+  }
+}
+
 
 tr.row-alternate {
   background-color: rgba(200, 0, 0, 0.1);
@@ -132,9 +157,14 @@ td:hover {
     padding: 0.3em;
     padding-left: 1em;
   }
+}
 
-  td.contributor {
-    font-size: 0.85rem;
+.md-hide{
+  display: none;
+}
+@media only screen and (min-width: 600px) {
+  .md-hide{
+    display: revert;
   }
 }
 
