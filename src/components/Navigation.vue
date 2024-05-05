@@ -1,7 +1,7 @@
 
 
 <template>
-  <div id="nav" class="flex f-wrap">
+  <div id="nav" class="flex">
     <router-link to="/" style="margin-left: 16px">Dizionario</router-link>
     <router-link to="/info">Info</router-link>
     <router-link to="/stats">Stats</router-link>
