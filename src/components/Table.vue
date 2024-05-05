@@ -9,7 +9,7 @@ import TermSearch from "./TermSearch.vue";
     <table>
       <thead>
         <tr>
-          <th class="flex">
+          <th>
             <IconSort :asc="true" style="width: 15px" />
             Kaibano
           </th>
