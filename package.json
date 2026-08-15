@@ -11,8 +11,7 @@
     "dev": "vite --host",
     "build": "vite build",
     "preserve": "vite build",
-    "serve": "vite preview --port 5050",
-    "update-dictionary": "node update-dictionary"
+    "serve": "vite preview --port 5050"
   },
   "dependencies": {
     "howler": "^2.2.3",

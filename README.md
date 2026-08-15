@@ -17,7 +17,7 @@ This app was made using Vue3/Vite.
 ### Update dictionary
 
 ```sh
-npm run update-dictionary
+node fetch-dict.js
 ```
 
 In order to run this command, you need a correct `.env` file with these keys
