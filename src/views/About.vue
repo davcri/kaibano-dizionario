@@ -30,7 +30,7 @@
       allowfullscreen="true" 
       scrolling="no" 
       height="378"
-      width="620"></iframe>
+      width="620"></iframe> 
 
     <h2>Voglio contribuire, come faccio?</h2>
     <p>
@@ -84,7 +84,7 @@ import { computed } from 'vue';
 
 const twitchUrl = computed(() => {
   const parent = import.meta.env.VITE_TWITCH_PARENT;
-  return `https://clips.twitch.tv/embed?clip=InventiveWanderingJayGrammarKing-GAxkoQFDKhrnjQK6&parent=${parent}`;
+  return `https://player.twitch.tv/?video=2832786569&time=1h35m15s&parent=${parent}`; 
 });
 // For Vue CLI (uncomment below and comment above if using CLI):
 // const parent = process.env.VUE_APP_TWITCH_PARENT;
