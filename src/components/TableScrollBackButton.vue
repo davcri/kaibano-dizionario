@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { appStore } from "../stores/app";
+import { appStore, playSfx } from "../stores/app";
 
 export default {
   mounted() {
@@ -44,7 +44,7 @@ export default {
       this.animating = true;
       this.hidden = true;
       const app = appStore();
-      app.$state.minimize.play();
+      playSfx('minimize')
       window.scrollTo({ top: 0, behavior: "smooth" });
     },
   },

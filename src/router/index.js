@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
-import { appStore } from "../stores/app";
+import { appStore, playSfx } from "../stores/app";
 import Stats from "../views/Stats.vue";
 
 const router = createRouter({
@@ -38,7 +38,7 @@ router.beforeEach((to, from, next) => {
     next();
   } else {
     const app = appStore();
-    app.sfx.play();
+    playSfx('sfx')
     next();
   }
 });

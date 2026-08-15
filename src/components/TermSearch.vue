@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { appStore } from "../stores/app";
+import { appStore, playSfx } from "../stores/app";
 import { dictionaryStore } from "../stores/dictionary";
 
 export default {
@@ -60,7 +60,7 @@ export default {
       this.dictionary.$state.searchQuery = "";
       this.$refs.input.value = "";
 
-      this.app.$state.click.play();
+      playSfx('click')
     },
     cb() {
       this.dictionary.$state.searchQuery = this.$refs.input.value;
