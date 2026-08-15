@@ -5,6 +5,15 @@ require("dotenv").config();
 const sheetID = "16MXvgyvb-NFViSVvF7ZsNnkjDRzIvdi94DkZYuyWj9Y"; // long ID from sheets URL
 const doc = new GoogleSpreadsheet(sheetID);
 
+// env variables
+const client_email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
+const private_key = process.env.GOOGLE_PRIVATE_KEY
+
+if (!client_email || !private_key) {
+	console.error("env variables not set correctly")
+	process.exit(1)
+}
+
 function wrapWithQuotes(text) {
   if (!text) return "";
   text = text.replaceAll("\n", " "); // allow entries with multiple lines
@@ -16,8 +25,8 @@ function wrapWithQuotes(text) {
 
 async function main() {
   await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
+    client_email,
+    private_key
   });
   await doc.loadInfo(); // loads document properties and worksheets
 
