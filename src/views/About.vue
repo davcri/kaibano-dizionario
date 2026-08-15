@@ -30,7 +30,7 @@
       allowfullscreen="true" 
       scrolling="no" 
       height="378"
-      width="620"></iframe> 
+      width="100%"></iframe> 
 
     <h2>Voglio contribuire, come faccio?</h2>
     <p>
