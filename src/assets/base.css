@@ -55,7 +55,7 @@ button {
   font-weight: 800;
   border: solid var(--accent) 0px;
   color: var(--accent-darkened);
-  box-shadow: var(--accent-semitransparent) 0px 0px 3px 3px;
+  /* box-shadow: var(--accent-semitransparent) 0px 0px 3px 3px; */
 }
 
 button:hover {
