@@ -1,5 +1,3 @@
-
-
 <template>
   <div id="nav" class="flex">
     <router-link to="/" style="margin-left: 16px">Dizionario</router-link>

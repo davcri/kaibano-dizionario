@@ -15,20 +15,22 @@
       Una lingua inventata da Gianluca Loggia, più comunemente conosciuto come
       <b>Ualone</b>. Potete seguire Ualone principalmente su
       <a href="https://www.twitch.tv/ualone">twitch.tv/ualone</a>.
+      <br />
     </p>
 
-    <h2>IL DIZIONARIO È UFFICIALE?</h2>
     <p>
-      Il dizionario è curato dalla community e non è attualmente riconosciuto
-      come un'opera ufficiale.
+      Qui una clip dove Ualone parla delle origini del Kaibano.
     </p>
 
-    <h2>Esistono copie cartacee?</h2>
-    <p>
-      Questo dizionario è disponibile esclusivamente in formato digitale. Siete
-      comunque liberi di scaricarne il contenuto e riprodurlo su qualsiasi
-      medium desiderato.
-    </p>
+    <Spacer size="lg" />
+    
+    <iframe
+      :src="twitchUrl"
+      frameborder="0" 
+      allowfullscreen="true" 
+      scrolling="no" 
+      height="378"
+      width="620"></iframe>
 
     <h2>Voglio contribuire, come faccio?</h2>
     <p>
@@ -49,6 +51,20 @@
       consultabile <a :href="repository">qui</a>.
     </p>
 
+    <h2>Il dizionario è ufficiale?</h2>
+    <p>
+      Il dizionario è curato dalla community e non è attualmente riconosciuto
+      come un'opera ufficiale.
+    </p>
+
+    <h2>Esistono copie cartacee?</h2>
+    <p>
+      Questo dizionario è disponibile esclusivamente in formato digitale. Siete
+      comunque liberi di scaricarne il contenuto e riprodurlo su qualsiasi
+      medium desiderato.
+    </p>
+
+
     <h2>Aggiornamenti</h2>
     <Post1 />
 
@@ -63,11 +79,23 @@
   </div>
 </template>
 
+<script setup>
+import { computed } from 'vue';
+
+const twitchUrl = computed(() => {
+  const parent = import.meta.env.VITE_TWITCH_PARENT;
+  return `https://clips.twitch.tv/embed?clip=InventiveWanderingJayGrammarKing-GAxkoQFDKhrnjQK6&parent=${parent}`;
+});
+// For Vue CLI (uncomment below and comment above if using CLI):
+// const parent = process.env.VUE_APP_TWITCH_PARENT;
+</script>
+
 <script>
 import Post1 from "./about/Post1.vue";
+import Spacer from "../components/Spacer.vue";
 
 export default {
-  components: { Post1 },
+  components: { Post1, Spacer },
   data() {
     return {
       repository: REPOSITORY,
