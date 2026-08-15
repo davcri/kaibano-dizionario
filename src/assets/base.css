@@ -13,9 +13,10 @@
 
   --radius: 0.5em;
 
-  --main-fonts: "Nunito", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+  --main-fonts:
+    "Nunito", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }
 
 :root {
@@ -49,9 +50,6 @@ body b {
 
 button {
   font-family: var(--main-fonts);
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background-color: var(--dark);
   border-radius: 1.4em;
   font-weight: 800;
