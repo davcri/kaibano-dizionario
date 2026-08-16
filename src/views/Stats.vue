@@ -25,23 +25,13 @@
     <h2>Tue statistiche</h2>
     <ul>
       <li>
-        Hai aperto questa tab da
-        <span class="hl">
-          {{ app.elapsedSeconds }}
-          second{{ app.elapsedSeconds === 1 ? "o" : "i" }}</span
-        >
-        e da quando lo hai fatto:
-        <ul>
-          <li>
-            Hai aperto un totale di
-            <span class="hl"
-              >{{ app.clickedInternalLinks + 1 }} pagin{{
-                app.clickedInternalLinks + 1 === 1 ? "a" : "e"
-              }}</span
-            >
-            su questo sito
-          </li>
-        </ul>
+        Hai cambiato pagina un totale di
+        <span class="hl"
+          >{{ app.clickedInternalLinks + 1 }} volt{{
+            app.clickedInternalLinks + 1 === 1 ? "a" : "e"
+          }}</span
+        > 
+        su questo sito
       </li>
       <li v-if="app.elapsedSeconds !== app.totalTime">
         Hai visualizzato {{ url }} per un totale di
@@ -51,6 +41,13 @@
       <li v-else>
         Sembra che sia la prima volta che visiti questo sito da questo browser!
         Aggiorna la pagina per sbloccare una nuova statistica!
+      </li>
+      <li>
+        Hai aperto questa tab da
+        <span class="hl">
+          {{ app.elapsedSeconds }}
+          second{{ app.elapsedSeconds === 1 ? "o" : "i" }}</span
+        >
       </li>
     </ul>
 

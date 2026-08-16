@@ -32,11 +32,15 @@ const router = createRouter({
 
 const initialClickedLinks = Number(JSON.parse(localStorage.getItem("stats"))?.clickedInternalLinks) ?? 0
 
+let firstLoad = true
+
 router.beforeEach((to, from, next) => {
   const app = appStore();
   app.$state.clickedInternalLinks += 1;
-  const isInitialLoading = app.$state.clickedInternalLinks === initialClickedLinks;
-  if (!isInitialLoading) {
+
+  if (firstLoad) {
+    firstLoad = false
+  } else {
     playSfx('sfx')
   }
 
