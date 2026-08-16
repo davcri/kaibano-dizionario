@@ -10,12 +10,17 @@
         Il dizionario è stato sincronizzato il
         <span class="hl">{{ dictionaryVersion }}</span>
       </li>
-      <li>
-        <span class="hl"> {{ dictionary.contributorsCount }} utenti</span>
-        hanno contribuito al dizionario. I top 5 sono:
-      </li>
     </ul>
+
+    <Spacer size="lg" />
+
+    <h2>CONTRIBUTI</h2>
+    <span class="hl"> {{ dictionary.contributorsCount }} utenti</span>
+    hanno contribuito al dizionario. I top 5 sono:
+
     <Leaderboard />
+
+    <Spacer size="lg" />
 
     <h2>Tue statistiche</h2>
     <ul>
@@ -48,6 +53,9 @@
         Aggiorna la pagina per sbloccare una nuova statistica!
       </li>
     </ul>
+
+    <Spacer size="lg" />
+
     <h2>INFO TECNICHE</h2>
     <ul>
       <li><b>Versione webapp</b>: {{ appVersion }}</li>
@@ -67,6 +75,7 @@
 import { dictionaryStore } from "../stores/dictionary";
 import { appStore } from "../stores/app";
 import Leaderboard from "./stats/Leaderboard.vue";
+import Spacer from "../components/Spacer.vue";
 
 export default {
   data() {
@@ -96,7 +105,7 @@ export default {
       this.elapsedSecondsSinceLastUpdate += 1;
     },
   },
-  components: { Leaderboard },
+  components: { Leaderboard, Spacer },
 };
 </script>
 
@@ -124,7 +133,9 @@ em {
 
 h2 {
   margin-top: 0;
+  margin-bottom: 0.3em;
 }
+
 .hl:hover {
   /* background-color: var(--violet-highlight); */
 }

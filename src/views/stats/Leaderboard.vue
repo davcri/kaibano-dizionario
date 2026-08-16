@@ -1,16 +1,14 @@
 <template>
-  <div class="leaderboard">
-    <div class="entry" v-for="(arr, i) in sortedContributors">
-      <span class="position"> {{ i + 1 }}.</span>
-
+  <ol class="leaderboard">
+    <li class="entry" v-for="(arr, i) in sortedContributors">
       <span class="contributor">
         {{ arr[0] }}
       </span>
       <span class="words hl">
         {{ arr[1] }} parol{{ arr[1] === 1 ? "a" : "e" }}
       </span>
-    </div>
-  </div>
+    </li>
+  </ol>
 </template>
 
 <script>
@@ -39,15 +37,14 @@ export default {
 </script>
 
 <style scoped>
-div.leaderboard {
-  margin: 1em;
+.leaderboard {
+  margin-top: 2em;
 }
 
-div.entry {
-  margin: 0.4rem;
-  margin-left: 3rem;
+li {
+  margin-top:0.5em; 
+  margin-bottom: 0.5em;
 }
-
 span.position {
   padding: 0.1rem;
 }
