@@ -16,7 +16,6 @@ export default {
   computed: {
     filteredWords() {
       const { words } = this.dictionary
-      console.log(JSON.stringify(words))
       return words.map(el =>{ 
         return {
         Kaibano: el.Kaibano,

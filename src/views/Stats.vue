@@ -60,7 +60,7 @@
         L'ultimo aggiornamento dell'applicazione web è stato fatto il
         {{ buildTimestamp }}
       </li>
-      <li><b>Librerie open source</b>: Vue3, Vite, Pinia, Papa-parse</li>
+      <li><b>Librerie open source</b>: Vue3, Vite, Pinia</li>
       <li>
         <b>Codice sorgente</b>: <a :href="repository">{{ repository }}</a>
       </li>

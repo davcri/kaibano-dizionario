@@ -24,7 +24,7 @@ import TermSearch from "./TermSearch.vue";
           <td @click="pronounce(word.Kaibano)">
             {{ word.Kaibano }}
             <span
-              v-if="word.Nuovo === 'true'"
+              v-if="word.Nuovo"
               class="new-badge"
               title="Nuova parola"
             >🆕</span>

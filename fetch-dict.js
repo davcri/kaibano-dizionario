@@ -1,11 +1,10 @@
 /**
- * Convert csv to js.
+ * Export the dictionary from Google Sheets to a JSON module.
  *
- * Main workflow: Google Drive Sheet -> .csv export -> dizionario.csv.js
+ * Main workflow: Google Drive Sheet -> src/assets/dizionario.json
  */
 
 const fs = require("fs");
-const path = require("path");
 const { GoogleSpreadsheet } = require("google-spreadsheet"); // https://theoephraim.github.io/node-google-spreadsheet/#/
 
 require("dotenv").config();
@@ -21,7 +20,7 @@ if (!client_email || !private_key) {
   process.exit(1);
 }
 
-const OUTPUT_PATH = "src/assets/dizionario.csv.js";
+const OUTPUT_PATH = "src/assets/dizionario.json";
 const PACKAGE_JSON_PATH = "package.json";
 
 const ITALIAN_MONTHS = [
@@ -58,60 +57,10 @@ function updatePackageJsonVersion(dateStr) {
   console.log(`package.json dictionaryVersion set to "${dateStr}"`);
 }
 
-function wrapWithQuotes(text) {
-  if (!text) return "";
-  text = text.replaceAll("\n", " "); // allow entries with multiple lines
-  if (text.includes(",") || text.includes('"')) {
-    text = `"${text.replaceAll('"', '""')}"`;
-  }
-  return text;
-}
-
 // Unique key for identifying a word across runs. Including the translation
 // means a changed translation is treated as a (re)new(ed) entry.
 function makeKey(kaibano, italiano) {
   return `${(kaibano || "").trim()}||${(italiano || "").trim()}`;
-}
-
-// Minimal CSV parser that understands quoted fields (with escaped "").
-function parseCSV(content) {
-  const rows = [];
-  let row = [];
-  let field = "";
-  let inQuotes = false;
-
-  for (let i = 0; i < content.length; i++) {
-    const c = content[i];
-    if (inQuotes) {
-      if (c === '"') {
-        if (content[i + 1] === '"') {
-          field += '"';
-          i++;
-        } else {
-          inQuotes = false;
-        }
-      } else {
-        field += c;
-      }
-    } else if (c === '"') {
-      inQuotes = true;
-    } else if (c === ",") {
-      row.push(field);
-      field = "";
-    } else if (c === "\n") {
-      row.push(field);
-      rows.push(row);
-      row = [];
-      field = "";
-    } else if (c !== "\r") {
-      field += c;
-    }
-  }
-  if (field.length > 0 || row.length > 0) {
-    row.push(field);
-    rows.push(row);
-  }
-  return rows;
 }
 
 // Read the previously generated file and return the set of known word keys.
@@ -119,18 +68,10 @@ function getPreviousWords(filePath) {
   const known = new Set();
   if (!fs.existsSync(filePath)) return known;
 
-  const content = fs.readFileSync(filePath, "utf8");
-  // Extract the template-literal contents between the backticks.
-  const match = content.match(/`([\s\S]*?)`/);
-  if (!match) return known;
-
-  const rows = parseCSV(match[1]);
-  // Skip the header row.
-  for (let i = 1; i < rows.length; i++) {
-    const r = rows[i];
-    if (!r || r.length === 0) continue;
-    if (!r[0] && !r[1]) continue; // skip blank lines
-    known.add(makeKey(r[0], r[1]));
+  const entries = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  for (const e of entries) {
+    if (!e.Kaibano && !e.Italiano) continue; // skip blank lines
+    known.add(makeKey(e.Kaibano, e.Italiano));
   }
   return known;
 }
@@ -149,37 +90,27 @@ async function main() {
     const italiano = (r["Italiano"] || "").trim();
     const aggiuntoDa = (r["Aggiunto da"] || "").trim();
     const isNew = !previousWords.has(makeKey(kaibano, italiano));
-    return { kaibano, italiano, aggiuntoDa, isNew };
+    return {
+      Kaibano: kaibano,
+      Italiano: italiano,
+      "Aggiunto da": aggiuntoDa,
+      Nuovo: isNew,
+    };
   });
 
   entries.sort((a, b) =>
-    a.kaibano.localeCompare(b.kaibano, "it", { sensitivity: "base" }),
+    a.Kaibano.localeCompare(b.Kaibano, "it", { sensitivity: "base" }),
   );
 
-  const headers = ["Kaibano", "Italiano", "Aggiunto da", "Nuovo"];
-
-  let dictionaryOutput = "export const dizionario = `";
-  dictionaryOutput += headers.join(",") + ",\n";
-
-  entries.forEach((e, idx) => {
-    dictionaryOutput +=
-      wrapWithQuotes(e.kaibano) + "," +
-      wrapWithQuotes(e.italiano) + "," +
-      wrapWithQuotes(e.aggiuntoDa) + "," +
-      (e.isNew ? true : false) + ",";
-
-    if (idx !== entries.length - 1) {
-      dictionaryOutput += "\n";
-    }
-  });
-
-  dictionaryOutput += "`;";
+  // One object per line keeps git diffs readable.
+  const dictionaryOutput =
+    "[\n" + entries.map((e) => JSON.stringify(e)).join(",\n") + "\n]\n";
 
   fs.writeFile(OUTPUT_PATH, dictionaryOutput, (err) => {
     if (err) {
       return console.error(err);
     }
-    const newCount = entries.filter((e) => e.isNew).length;
+    const newCount = entries.filter((e) => e.Nuovo).length;
     console.log(
       `export completed (${entries.length} entries, ${newCount} marked as new)`,
     );
