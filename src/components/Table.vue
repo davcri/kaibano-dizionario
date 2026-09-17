@@ -9,13 +9,9 @@ import TermSearch from "./TermSearch.vue";
     <table>
       <thead>
         <tr>
-          <th>
-            <!-- <IconSort :asc="true" style="width: 15px" /> -->
-            Kaibano
-          </th>
-          
+          <th>Kaibano</th>
           <th>Italiano</th>
-          <th class="md-hide" style="width: 25%">Aggiunto da</th>
+          <th class="col-contributor">Aggiunto da</th>
         </tr>
       </thead>
 
@@ -25,113 +21,95 @@ import TermSearch from "./TermSearch.vue";
           :key="`${word.Kaibano} ${j}`"
           :class="{ 'row-alternate': j % 2 === 0 }"
         >
+          <td @click="pronounce(word.Kaibano)">
+            {{ word.Kaibano }}
+            <span
+              v-if="word.Nuovo === 'true'"
+              class="new-badge"
+              title="Nuova parola"
+            >🆕</span>
+          </td>
+
+          <td @click="pronounce(word.Italiano)">
+            {{ word.Italiano }}
+          </td>
+
           <td
-            v-for="(val, key, idx) of word"
-            :key="`${val} ${idx}`"
-            @click="pronounce(val)"
-            :class="{ contributor: key === 'AggiuntoDa', 'md-hide': idx ==2 }"
+            class="contributor col-contributor"
+            @click="pronounce(word['AggiuntoDa'])"
           >
-            {{ val }}
+            {{ word["AggiuntoDa"] }}
           </td>
         </tr>
       </tbody>
     </table>
-    <!-- <TableScrollBackButton /> -->
   </div>
 </template>
 
 <script>
-import TableScrollBackButton from "./TableScrollBackButton.vue";
-import IconSort from "./icons/IconSort.vue";
-
 export default {
   props: ["words"],
   methods: {
     pronounce(text) {
+      if (!text) return;
       const msg = new SpeechSynthesisUtterance(text);
       msg.lang = "it";
       window.speechSynthesis.speak(msg);
     },
   },
-  components: { TableScrollBackButton, IconSort },
 };
 </script>
 
 <style scoped>
-table {
-  width: 100%;
-  overflow-x: hidden;
-  display: grid;
-  border-spacing: 0px;
-
-  word-break: break-word;
+div.row.content {
+  overflow: auto;
+  max-height: 70vh;
+  clip-path: inset(0 0 0 0 round 0.6em);
 }
 
-div.row.content {
-  clip-path: inset(0 0 0 0 round 0.6em);
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed; 
+}
+
+th,
+td {
+  width: 50%;
+  padding: 0.8em;
+  text-align: left;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  vertical-align: top;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #3f1c6f;
+  font-weight: bold;
 }
 
 tbody tr {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-tbody tr, tbody tr td {
-  width: 50%;
-}
-
-@media screen and (min-width: 480px) {
-  tbody tr :nth-child(1) {
-    width: calc(75% / 2);
-  }
-  tbody tr :nth-child(2) {
-    width: calc(75% / 2);
-  }
-  tbody tr :nth-child(3) {
-   width: 25%;
-  }
-}
-
-thead {
-  display: flex;
-  width: 100%;
-  top: 0px;
-  display: inline-table;
-  position: sticky;
-  position: -webkit-sticky;
-  background-color: #3f1c6f;
-  z-index: 2;
-}
-
-/* th */
-th {
-  padding: 0.5em;
-  width: 50%;
-  padding-left: 0.8em;
-  flex: 1;
-  text-align: left;
-  font-weight: bold;
-}
-th:nth-child(2) {
-  background-color: rgba(0,0,0,0.05);
-}
-@media screen and (min-width: 480px) {
-  th {
-    width: calc(75%/2);
-  }
-}
-
-
-tr.row-alternate {
+tbody tr.row-alternate {
   background-color: rgba(200, 0, 0, 0.1);
 }
 
 td {
-  padding: 0.2em;
-  padding-left: 1em;
-
-  background-color: #5a329100;
-  transition: all 0.15s;
   text-transform: capitalize;
+  transition: all 0.15s;
+}
+
+td:hover {
+  background-color: #4e2e7a;
+  transform: translateX(-0.2rem);
+  cursor: pointer;
+  z-index: 1;
 }
 
 td.contributor {
@@ -140,12 +118,25 @@ td.contributor {
   font-size: 0.75rem;
 }
 
-td:hover {
-  background-color: #4e2e7a;
-  z-index: 1;
-  cursor: pointer;
-  transition: all 0.15s;
-  transform: translateX(-0.2rem);
+@media screen and (max-width: 799px) {
+  th.col-contributor,
+  td.col-contributor {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  th:nth-child(1),
+  td:nth-child(1),
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 37.5%;
+  }
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 25%;
+  }
 }
 
 @media screen and (min-width: 480px) {
@@ -158,23 +149,4 @@ td:hover {
     padding-left: 1em;
   }
 }
-
-.md-hide{
-  display: none;
-}
-@media only screen and (min-width: 600px) {
-  .md-hide{
-    display: revert;
-  }
-}
-
-.md-hide{
-  display: none;
-}
-@media only screen and (min-width: 600px) {
-  .md-hide{
-    display: revert;
-  }
-}
-
 </style>

@@ -15,10 +15,14 @@ export default {
   },
   computed: {
     filteredWords() {
-      return this.dictionary.words.map(el =>{ return {
+      const { words } = this.dictionary
+      console.log(JSON.stringify(words))
+      return words.map(el =>{ 
+        return {
         Kaibano: el.Kaibano,
         Italiano: el.Italiano,
-        AggiuntoDa: el["Aggiunto da"]
+        AggiuntoDa: el["Aggiunto da"],
+        Nuovo: el.Nuovo
       }}).filter((w) => {
         const italianWord = w.Italiano.toLowerCase();
         const kaibanoWord = w.Kaibano.toLowerCase();

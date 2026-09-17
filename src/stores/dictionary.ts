@@ -2,30 +2,29 @@ import { defineStore } from "pinia";
 import { dizionario } from "../assets/dizionario.csv";
 import Papa from "papaparse";
 
+type ParsedDictionaryEntry = {
+  Kaibano: string,
+  Italiano: string,
+  "Aggiunto da": string,
+  "Revisionato da"?: string,
+  Fonte: string,
+  Nuovo: string
+}
+export type ParsedDictionary = ParsedDictionaryEntry[]
+
 export const dictionaryStore = defineStore("dictionary", {
   state: () => ({
     searchQuery: "",
-    words: [],
-    contributors: {},
+    words: [] as ParsedDictionary,
+    contributors: {} as Record<string, number>,
   }),
   actions: {
     init() {
-      const parsed = this.parseDizionario();
-      parsed.data.map((el) => {
-        delete el["Revisionato da"];
-        this.words.push(el);
-      });
-    },
-    reset() {
-      this.searchQuery = "";
-    },
-    parseDizionario() {
-      const dict = Papa.parse(dizionario, {
-        // https://www.papaparse.com/docs#config
-        header: true,
-      });
+      // init words
+      this.words = this.parseDizionario()
 
-      dict.data.forEach((el) => {
+      // init contribuots
+      this.words.forEach((el) => {
         const contributor = el["Aggiunto da"];
         if (contributor in this.contributors) {
           this.contributors[contributor] += 1;
@@ -33,7 +32,24 @@ export const dictionaryStore = defineStore("dictionary", {
           this.contributors[contributor] = 1;
         }
       });
-      return dict;
+    },
+    reset() {
+      this.searchQuery = "";
+    },
+    parseDizionario(): ParsedDictionary {
+      const dict = Papa.parse(dizionario, {
+        // https://www.papaparse.com/docs#config
+        header: true,
+      });
+
+      const newDict: ParsedDictionary = []
+        const words = dict.data as ParsedDictionary
+        words.forEach((element,idx) => {
+          // delete (element as any)[`""`]
+          newDict[idx] = element
+        })
+      console.log(newDict)
+      return newDict as ParsedDictionary;
     },
   },
   getters: {
